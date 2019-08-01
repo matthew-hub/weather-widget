@@ -6,7 +6,7 @@ const CityNames = (props) => {
   // destructuring assignment variables from props
   const {cities, cityId, selectCity, click} = props.cityData;
 
-  const cityList = cities.map( city => {
+  const cityList = cities.map(city => {
     return (
       <li onClick={() => click(city.id, city.name)} key={city.id}>{city.name}</li>
     )
@@ -15,7 +15,7 @@ const CityNames = (props) => {
   return ( 
     <div className="weather__city">
       <div className="city__dropdown">
-        <h3>{cityId === null ? "Select City" : selectCity }</h3>
+        <h3>{cityId === null ? 'Select City' : selectCity}</h3>
         <ul className="city__list">
           {cityList}
         </ul>

@@ -9,7 +9,7 @@ const Weather = (props) => {
   const {cities, error, isLoaded, weather, cityId, selectCity, tempType} = props.weather;
 
   const daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; 
-  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   // get city data for passing to the component
   const cityData = {
@@ -30,28 +30,28 @@ const Weather = (props) => {
       case 1:  
         return "st";
       case 2:  
-        return "nd";
+        return 'nd';
       case 3:  
-        return "rd";
+        return 'rd';
       default: 
-        return "th";
+        return 'th';
      }
   }
 
   // get full date of current day 
-  let weatherDate = daysNames[newDate.getDay()] + ", " + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + nth(newDate.getDate());
+  let weatherDate = daysNames[newDate.getDay()] + ', ' + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + nth(newDate.getDate());
 
   // check if weather data was downloaded
   if(isLoaded && weather && !error){
 
-    let weatherTemp = (tempType === "fanhrenheit" ? Math.round(weather[0].temperature * 9 / 5 + 32) : weather[0].temperature);
+    let weatherTemp = (tempType === 'fahrenheit' ? Math.round(weather[0].temperature * 9 / 5 + 32) : weather[0].temperature);
 
     let tempInfo = (
       <div className="weather__info--temp">{weatherTemp}
           <sup className="temp__active" onClick={() => props.tempChange(tempType)}>{'°' + tempType.charAt(0).toUpperCase()} | </sup>
           <sup onClick={() => {
-            tempType === "celsius" ? props.tempChange("fanhrenheit") : props.tempChange("celsius");
-          }}>{tempType === "celsius" ? "°F" : "°C"}</sup>
+            tempType === 'celsius' ? props.tempChange('fahrenheit') : props.tempChange('celsius');
+          }}>{tempType === 'celsius' ? '°F' : '°C'}</sup>
       </div>
     )
 
@@ -72,9 +72,9 @@ const Weather = (props) => {
           <div className="weather__info--temp">{tempInfo}</div>
           <div className="weather__info--more">
             <ul>
-              <li>Precipitation: <span>{weather[0].precipitation + "%"}</span> </li>
-              <li>Humidity: <span>{weather[0].humidity + "%"}</span> </li>
-              <li>Wind: <span>{weather[0].windInfo.speed + " mph " + weather[0].windInfo.direction }</span> </li>
+              <li>Precipitation: <span>{weather[0].precipitation + '%'}</span> </li>
+              <li>Humidity: <span>{weather[0].humidity + '%'}</span> </li>
+              <li>Wind: <span>{weather[0].windInfo.speed + ' mph ' + weather[0].windInfo.direction }</span> </li>
               <li>Pollen Count: <span>{weather[0].pollenCount}</span> </li>
             </ul>
           </div>
