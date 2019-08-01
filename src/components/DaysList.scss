@@ -1,4 +1,4 @@
-
+// list of weather days
 .weather__days {
   display: flex;
   flex-flow: row wrap;
@@ -12,10 +12,9 @@
     padding: 20px;
   
     .list__avatar {
-      display: block;
-      position: relative;
       height: 60px;
       width: 100%;
+      background-size: 100%;
       background-position: center;
     }
   
@@ -40,7 +39,7 @@
         color: #636363;
         position: relative;
         vertical-align: baseline;
-        top: -3px;
+        top: -4px;
       }
     }
     
@@ -54,33 +53,34 @@
 }
 
 
+/* classes adapted to the type of weather */
 
-.Cloudy {
+.cloudy {
   background-image: url('../assets/images/cloudy.png');
   background-repeat: no-repeat;
 }
 
-.Sunny {
+.sunny {
   background-image: url('../assets/images/sunny.png');
   background-repeat: no-repeat;
 }
 
-.PartlyCloudy {
+.partlycloudy {
   background-image: url('../assets/images/partly_cloudy.png');
   background-repeat: no-repeat;
 }
 
-.RainLight {
+.rainlight {
   background-image: url('../assets/images/rain_light.png');
   background-repeat: no-repeat;
 }
 
-.RainAndCloudy {
+.rainandcloudy {
   background-image: url('../assets/images/rain_s_cloudy.png');
   background-repeat: no-repeat;
 }
 
-
+/* media */
 @media (max-width: 745px){
   .weather__days {
     flex-direction: column;

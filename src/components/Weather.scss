@@ -7,10 +7,11 @@
   src: url('../assets/fonts/ProductSans-Regular.ttf');
 }
 
-
+/* app container */
 .weather {
   position: relative;
   max-width: 800px;
+  min-width: 300px;
   height: auto;
   box-shadow: 0px 0px 4px 1px #bbbbbb;
   padding: 10px 15px 15px 15px;
@@ -90,7 +91,7 @@
  
 }
 
-
+//drop down list of city names
 .city__dropdown {
   font-family: OpenSans;
   cursor: pointer;

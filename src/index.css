@@ -3,6 +3,7 @@ html {
   box-sizing: border-box; /* defines how the width and height of an element are calculated: should they include padding and borders, or not */
 }
 
+/* css reset */
 *, *:before, *:after {
   box-sizing: inherit;
   margin: 0;
