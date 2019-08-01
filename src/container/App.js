@@ -3,17 +3,20 @@ import Weather from '../components/Weather'
 import './App.scss';
 
 class App extends Component {
+
   currentDate = new Date().toISOString().slice(0, 10); // get current date
+
   state = {
     cities: [],
-    cityId: 1,
-    selectCity: 'Katowice',
+    cityId: null,
+    selectCity: '',
     isLoaded: false,
     error: false,
-    weather: ''
+    weather: '',
+    tempType: "fanhrenheit",
   }
 
-  // fetch city name for weather API
+  // fetch city name from weather API
   fetchCity = () => {
     fetch('http://dev-weather-api.azurewebsites.net/api/city').then(
       response => {
@@ -26,16 +29,17 @@ class App extends Component {
     ).then(data => {
       this.setState({
         cities: data,
-        isLoaded: true
-      });
+        cityId: data[0].id,
+        selectCity: data[0].name,
+        
+      }, this.fetchWether);
     }).catch(error => {
       this.setState({ error })
-    });
+    })
   }
 
-  // fetch weather from API 
+  // fetch weather data from API 
   fetchWether() {
-    console.log(this.currentDate)
     let API = `http://dev-weather-api.azurewebsites.net/api/city/${this.state.cityId}/weather?date=${this.currentDate}`;
     fetch(API).then(
       response => {
@@ -47,35 +51,39 @@ class App extends Component {
       }
     ).then( data => {
       this.setState({
-        weather: data
+        weather: data,
+        isLoaded: true
       })
     })
   }  
 
+  handleTempChange = (type) => {
+    this.setState({ tempType: type });
+  }
 
   // handle click, selected city name, update setState
   handleCityChange = (id, city) => {
     this.setState({ 
       cityId: id,
-      selectCity: city
+      selectCity: city,
+      isLoaded: false,
     }, this.fetchWether);
   }  
 
   componentDidMount(){
     this.fetchCity(); // fetach city name when component mounted
-    this.fetchWether();
   }
 
   render() {
-    const {isLoaded} = this.state;
 
+    // display any error when fetch fail
     if(this.state.error) {
       return <h1>{this.state.error.message}</h1>
     }
  
     return (
       <div className="App">
-       {isLoaded ===  false ? <h3>Loading..</h3> : <Weather weather={this.state} click={this.handleCityChange}/>}
+       <Weather date={this.currentDate} weather={this.state} click={this.handleCityChange} tempChange={this.handleTempChange}/>
       </div>
     );
   }
