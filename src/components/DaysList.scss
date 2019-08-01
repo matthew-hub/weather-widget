@@ -1,15 +1,59 @@
-.weather__days__list {
-  // background-color: red;
-  width: auto;
+
+.weather__days {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 100%;
   height: auto;
-  padding: 20px;
-  .list__avatar {
-    display: block;
-    position: relative;
-    height: 60px;
-    width: 100px;
+
+  &__list {
+    width: auto;
+    height: auto;
+    padding: 20px;
+  
+    .list__avatar {
+      display: block;
+      position: relative;
+      height: 60px;
+      width: 100%;
+      background-position: center;
+    }
+  
+    .list__day {
+      font-family: OpenSans;
+      color: #292929;
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  
+    .list__temp {
+      display: block;
+      font-family: OpenSans;
+      color: #292929;
+      font-size: 1.9rem;
+      font-weight: bold;
+      text-align: center;
+      sup {
+        line-height: 0;
+        font-size: 1.4rem;
+        color: #636363;
+        position: relative;
+        vertical-align: baseline;
+        top: -3px;
+      }
+    }
+    
+    .list__pollen {
+      font-family: OpenSans;
+      color: #868686;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
   }
 }
+
+
 
 .Cloudy {
   background-image: url('../assets/images/cloudy.png');
@@ -25,11 +69,47 @@
   background-image: url('../assets/images/partly_cloudy.png');
   background-repeat: no-repeat;
 }
+
 .RainLight {
   background-image: url('../assets/images/rain_light.png');
   background-repeat: no-repeat;
 }
+
 .RainAndCloudy {
   background-image: url('../assets/images/rain_s_cloudy.png');
   background-repeat: no-repeat;
 }
+
+
+@media (max-width: 745px){
+  .weather__days {
+    flex-direction: column;
+    &__list {
+      display: flex;
+      flex-flow: row wrap;
+      border-top: 1px solid #636363;
+      justify-content: space-between;
+      align-items: center;
+
+      .list__day {
+        width: 60px;
+        text-align: left;
+      }
+
+      .list__avatar {
+        height: 70px;
+        width: 70px;
+        background-position: center;
+      }
+    }  
+  }
+}
+
+
+@media (max-width: 600px){
+  .list__pollen {
+    width: 30px; 
+    text-align: center;
+  }
+}
+
