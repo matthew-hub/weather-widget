@@ -45,9 +45,10 @@
   li {
     list-style: none;
     padding: 5px 15px;
-    &:hover {
+    &:hover, &:focus, &:active {
       background-color: rgb(57, 157, 250);
       color: #ffffff;
     }
+
   }
 }
