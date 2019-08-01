@@ -1,6 +1,7 @@
 import React from 'react';
 import './Weather.scss'
 import DaysList from './DaysList';
+import CityNames from './CityNames'
 
 const Weather = (props) => {
 
@@ -9,6 +10,14 @@ const Weather = (props) => {
 
   const daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; 
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  // get city data for passing to the component
+  const cityData = {
+    cityId,
+    selectCity,
+    cities,
+    click: props.click,
+  }
 
   let content = null;
 
@@ -29,6 +38,7 @@ const Weather = (props) => {
      }
   }
 
+  // get full date of current day 
   let weatherDate = daysNames[newDate.getDay()] + ", " + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + nth(newDate.getDate());
 
   // check if weather data was downloaded
@@ -36,23 +46,14 @@ const Weather = (props) => {
 
     let weatherTemp = (tempType === "fanhrenheit" ? Math.round(weather[0].temperature * 9 / 5 + 32) : weather[0].temperature);
 
-    let tempContent;
-
-    if(tempType === "fanhrenheit"){
-       tempContent = (
-        <div className="weather__info--temp">{weatherTemp} 
-          <sup className={tempType === "fanhrenheit" ? "temp__active" : null} onClick={() => props.tempChange("fanhrenheit")}>°F | </sup>
-          <sup onClick={() => props.tempChange("celsius")}>°C</sup>
-        </div>
-      )
-    } else {
-      tempContent = (
-        <div className="weather__info--temp">{weatherTemp}
-          <sup className={tempType === "celsius" ? "temp__active" : null} onClick={() => props.tempChange("celsius")}>°C | </sup>
-          <sup onClick={() => props.tempChange("fanhrenheit")}>°F</sup>
-        </div>
-      )
-    }
+    let tempInfo = (
+      <div className="weather__info--temp">{weatherTemp}
+          <sup className="temp__active" onClick={() => props.tempChange(tempType)}>{'°' + tempType.charAt(0).toUpperCase()} | </sup>
+          <sup onClick={() => {
+            tempType === "celsius" ? props.tempChange("fanhrenheit") : props.tempChange("celsius");
+          }}>{tempType === "celsius" ? "°F" : "°C"}</sup>
+      </div>
+    )
 
     // find capital letters in string || insert space before capital letters
     let weatherType = weather[0].type.replace(/([A-Z])/g, ' $1').trim();
@@ -61,7 +62,6 @@ const Weather = (props) => {
     weatherType = weatherType.toLowerCase(); 
     // set first letter to upperscase || add rest string to first letter
     weatherType = weatherType.charAt(0).toUpperCase() + weatherType.slice(1);
-
   
     content = (
       <>
@@ -69,7 +69,7 @@ const Weather = (props) => {
           <div className="weather__info--date">{weatherDate}</div>
           <div className="weather__info--type">{weatherType}</div>
           <div className={`weather__info--avatar ${weather[0].type.toLowerCase()}`}></div>
-          <div className="weather__info--temp">{tempContent}</div>
+          <div className="weather__info--temp">{tempInfo}</div>
           <div className="weather__info--more">
             <ul>
               <li>Precipitation: <span>{weather[0].precipitation + "%"}</span> </li>
@@ -86,22 +86,9 @@ const Weather = (props) => {
     )
   }
 
-  const cityList = cities.map( city => {
-    return (
-      <li onClick={() => props.click(city.id, city.name)} key={city.id}>{city.name}</li>
-    )
-  })
-
   return (  
     <div className="weather">
-      <div className="weather__city">
-        <div className="city__dropdown">
-          <h3>{cityId === null ? "Select City" : selectCity }</h3>
-          <ul className="city__list">
-            {cityList}
-          </ul>
-        </div>
-      </div> 
+      <CityNames cityData={cityData}/>
       {isLoaded === false ? <h3>Loadding...</h3> : content}
     </div>
   );

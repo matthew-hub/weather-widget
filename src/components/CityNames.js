@@ -3,6 +3,7 @@ import './CityNames.scss'
 
 const CityNames = (props) => {
 
+  // destructuring assignment variables from props
   const {cities, cityId, selectCity, click} = props.cityData;
 
   const cityList = cities.map( city => {

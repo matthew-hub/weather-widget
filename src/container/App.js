@@ -31,7 +31,6 @@ class App extends Component {
         cities: data,
         cityId: data[0].id,
         selectCity: data[0].name,
-        
       }, this.fetchWeather); // set state for cities name, after download weather data
     }).catch(error => {
       this.setState({ error })
@@ -57,6 +56,7 @@ class App extends Component {
     })
   }  
 
+  // change temperature
   handleTempChange = (type) => {
     this.setState({ tempType: type });
   }

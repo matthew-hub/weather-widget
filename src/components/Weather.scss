@@ -20,12 +20,6 @@
   padding: 10px 15px 15px 15px;
   border-radius: 5px;
 
-  &__city {
-    display: block;
-    width: auto;
-    height: auto;
-  }
-
   &__info {
     overflow: hidden;
     position: relative;
@@ -88,59 +82,7 @@
       }
     }
   }
-
- 
 }
-
-//drop down list of city names
-.city__dropdown {
-  font-family: OpenSans;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  width: 150px;
-  height: auto;
-  text-align: left;
-  padding: 5px 0px;
-  border-bottom: 1px solid #bbbbbb;
-
-  &:hover .city__list {
-    opacity:1;
-    visibility: visible;
-  }
-  
-  h3 {
-    font-size: 3rem;
-    font-weight: 400;
-  }
-}
-
-.city__list {
-  visibility: hidden;
-  position: absolute;
-  transition: all 0.3s ease-in-out;
-  left: 0;
-  z-index: 99;
-  top: 55px;
-  box-shadow: 0px 0px 4px 1px #bbbbbb;
-  opacity:0;
-  width: 150px;
-  height: auto; 
-  font-size: 2rem;
-  background-color: rgb(255, 255, 255);
-  cursor: pointer;
-
-  li {
-    list-style: none;
-    padding: 5px 15px;
-    &:hover {
-      background-color: rgb(57, 157, 250);
-      color: #ffffff;
-    }
-  }
-  
-}
-
 
 @media (max-width: 450px){
   .weather {
