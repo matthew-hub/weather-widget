@@ -32,14 +32,14 @@ class App extends Component {
         cityId: data[0].id,
         selectCity: data[0].name,
         
-      }, this.fetchWether); // set state for cities name, after download weather data
+      }, this.fetchWeather); // set state for cities name, after download weather data
     }).catch(error => {
       this.setState({ error })
     })
   }
 
   // fetch weather data from API 
-  fetchWether() {
+  fetchWeather() {
     let API = `http://dev-weather-api.azurewebsites.net/api/city/${this.state.cityId}/weather?date=${this.currentDate}`;
     fetch(API).then(
       response => {
@@ -67,7 +67,7 @@ class App extends Component {
       cityId: id,
       selectCity: city,
       isLoaded: false,
-    }, this.fetchWether);
+    }, this.fetchWeather);
   }  
 
   componentDidMount(){
