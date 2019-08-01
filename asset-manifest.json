@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/matthew-hub/weather-widget/static/css/main.b280f0e0.chunk.css",
-    "main.js": "/matthew-hub/weather-widget/static/js/main.7dcf57c2.chunk.js",
-    "main.js.map": "/matthew-hub/weather-widget/static/js/main.7dcf57c2.chunk.js.map",
-    "runtime~main.js": "/matthew-hub/weather-widget/static/js/runtime~main.98bdf2d6.js",
-    "runtime~main.js.map": "/matthew-hub/weather-widget/static/js/runtime~main.98bdf2d6.js.map",
-    "static/js/2.65aa1cca.chunk.js": "/matthew-hub/weather-widget/static/js/2.65aa1cca.chunk.js",
-    "static/js/2.65aa1cca.chunk.js.map": "/matthew-hub/weather-widget/static/js/2.65aa1cca.chunk.js.map",
-    "index.html": "/matthew-hub/weather-widget/index.html",
-    "precache-manifest.43c24a21ce41563eab9c01db784508d5.js": "/matthew-hub/weather-widget/precache-manifest.43c24a21ce41563eab9c01db784508d5.js",
-    "service-worker.js": "/matthew-hub/weather-widget/service-worker.js",
-    "static/css/main.b280f0e0.chunk.css.map": "/matthew-hub/weather-widget/static/css/main.b280f0e0.chunk.css.map",
-    "static/media/Weather.scss": "/matthew-hub/weather-widget/static/media/ProductSans-Regular.b61c0ab3.ttf"
+    "main.css": "/weather-widget/static/css/main.937b8cef.chunk.css",
+    "main.js": "/weather-widget/static/js/main.7dcf57c2.chunk.js",
+    "main.js.map": "/weather-widget/static/js/main.7dcf57c2.chunk.js.map",
+    "runtime~main.js": "/weather-widget/static/js/runtime~main.2790befd.js",
+    "runtime~main.js.map": "/weather-widget/static/js/runtime~main.2790befd.js.map",
+    "static/js/2.65aa1cca.chunk.js": "/weather-widget/static/js/2.65aa1cca.chunk.js",
+    "static/js/2.65aa1cca.chunk.js.map": "/weather-widget/static/js/2.65aa1cca.chunk.js.map",
+    "index.html": "/weather-widget/index.html",
+    "precache-manifest.24a68f18e35f0ef066506d93d3416d10.js": "/weather-widget/precache-manifest.24a68f18e35f0ef066506d93d3416d10.js",
+    "service-worker.js": "/weather-widget/service-worker.js",
+    "static/css/main.937b8cef.chunk.css.map": "/weather-widget/static/css/main.937b8cef.chunk.css.map",
+    "static/media/Weather.scss": "/weather-widget/static/media/ProductSans-Regular.b61c0ab3.ttf"
   }
 }
