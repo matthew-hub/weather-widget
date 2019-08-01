@@ -13,17 +13,17 @@ class App extends Component {
     isLoaded: false,
     error: false,
     weather: '',
-    tempType: "fanhrenheit",
+    tempType: 'fahrenheit',
   }
 
   // fetch city name from weather API
   fetchCity () {
-    fetch('http://dev-weather-api.azurewebsites.net/api/city').then(
+    fetch('https://dev-weather-api.azurewebsites.net/api/city').then(
       response => {
         if(response.ok){
           return response.json()
         } else {
-          throw Error('Download data error');
+          throw new Error('Download data error');
         }
       }
     ).then(data => {
@@ -39,13 +39,13 @@ class App extends Component {
 
   // fetch weather data from API 
   fetchWeather() {
-    let API = `http://dev-weather-api.azurewebsites.net/api/city/${this.state.cityId}/weather?date=${this.currentDate}`;
+    let API = `https://dev-weather-api.azurewebsites.net/api/city/${this.state.cityId}/weather?date=${this.currentDate}`;
     fetch(API).then(
       response => {
         if(response.ok){
           return response.json();
         } else {
-          throw Error('Download data error');
+          throw new Error('Download data error');
         }
       }
     ).then( data => {
