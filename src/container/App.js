@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   // fetch city name from weather API
-  fetchCity = () => {
+  fetchCity () {
     fetch('http://dev-weather-api.azurewebsites.net/api/city').then(
       response => {
         if(response.ok){
@@ -32,7 +32,7 @@ class App extends Component {
         cityId: data[0].id,
         selectCity: data[0].name,
         
-      }, this.fetchWether);
+      }, this.fetchWether); // set state for cities name, after download weather data
     }).catch(error => {
       this.setState({ error })
     })
