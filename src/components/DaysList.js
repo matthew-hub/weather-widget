@@ -13,8 +13,8 @@ const DaysList = (props) => {
     return (
       <div className="weather__days__list" key={index}>
         <div className="list__day">{date === currentDay ? "Today": props.daysNames[date]}</div>
-        <div className={`list__avatar ${day.type}`}></div>
-        <div className="list__temp">{infoTemp} {props.tempType === "fanhrenheit" ? <sup>°F</sup> : <sup>°C</sup>}</div>
+        <div className={`list__avatar ${day.type.toLowerCase()}`}></div>
+        <div className="list__temp">{infoTemp}{props.tempType === "fanhrenheit" ? <sup>°F</sup> : <sup>°C</sup>}</div>
         <div className="list__pollen">{"Pollen " + day.pollenCount} </div>
       </div>
     )
