@@ -29,37 +29,47 @@ const Weather = (props) => {
      }
   }
 
-  let infoDate = daysNames[newDate.getDay()] + ", " + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + nth(newDate.getDate());
+  let weatherDate = daysNames[newDate.getDay()] + ", " + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + nth(newDate.getDate());
 
+  // check if weather data was downloaded
   if(isLoaded && weather && !error){
 
-    let infoTemp = (tempType === "fanhrenheit" ? Math.round(weather[0].temperature * 9 / 5 + 32) : weather[0].temperature);
+    let weatherTemp = (tempType === "fanhrenheit" ? Math.round(weather[0].temperature * 9 / 5 + 32) : weather[0].temperature);
 
     let tempContent;
 
     if(tempType === "fanhrenheit"){
        tempContent = (
-        <div className="weather__info--temp">{infoTemp} 
+        <div className="weather__info--temp">{weatherTemp} 
           <sup className={tempType === "fanhrenheit" ? "temp__active" : null} onClick={() => props.tempChange("fanhrenheit")}>°F | </sup>
           <sup onClick={() => props.tempChange("celsius")}>°C</sup>
-      </div>
+        </div>
       )
     } else {
       tempContent = (
-        <div className="weather__info--temp">{infoTemp}
+        <div className="weather__info--temp">{weatherTemp}
           <sup className={tempType === "celsius" ? "temp__active" : null} onClick={() => props.tempChange("celsius")}>°C | </sup>
           <sup onClick={() => props.tempChange("fanhrenheit")}>°F</sup>
-      </div>
+        </div>
       )
     }
+
+    // find capital letters in string || insert space before capital letters
+    let weatherType = weather[0].type.replace(/([A-Z])/g, ' $1').trim();
+
+    // changed string to lowercase letters
+    weatherType = weatherType.toLowerCase(); 
+    // set first letter to upperscase || add rest string to first letter
+    weatherType = weatherType.charAt(0).toUpperCase() + weatherType.slice(1);
+
+  
     content = (
       <>
         <div className="weather__info">
-          <div className="weather__info--date">{infoDate}</div>
-          <div className="weather__info--type">{weather[0].type}</div>
-          <div className={`weather__info--avatar ${weather[0].type}`}></div>
-          <div className="weather__info--temp">{tempContent}
-          </div>
+          <div className="weather__info--date">{weatherDate}</div>
+          <div className="weather__info--type">{weatherType}</div>
+          <div className={`weather__info--avatar ${weather[0].type.toLowerCase()}`}></div>
+          <div className="weather__info--temp">{tempContent}</div>
           <div className="weather__info--more">
             <ul>
               <li>Precipitation: <span>{weather[0].precipitation + "%"}</span> </li>
