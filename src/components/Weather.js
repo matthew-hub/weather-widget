@@ -1,30 +1,79 @@
 import React from 'react';
 import './Weather.scss'
 import DaysList from './DaysList';
+
 const Weather = (props) => {
 
-  const {cities, isLoaded, weather, cityId, selectCity} = props.weather;
+  // destructuring assignment variables from props
+  const {cities, error, isLoaded, weather, cityId, selectCity, tempType} = props.weather;
+
+  const daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; 
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   let content = null;
 
+  let newDate = new Date(props.date);
+ 
+  // get ordinal numbers
+  const nth = (d) => {
+    if(d > 3 && d < 21) return 'th'; 
+    switch (d % 10) {
+      case 1:  
+        return "st";
+      case 2:  
+        return "nd";
+      case 3:  
+        return "rd";
+      default: 
+        return "th";
+     }
+  }
 
-  console.log(props.weather.weather)
-  if(isLoaded && weather){
-    
+  let infoDate = daysNames[newDate.getDay()] + ", " + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + nth(newDate.getDate());
+
+  if(isLoaded && weather && !error){
+
+    let infoTemp = (tempType === "fanhrenheit" ? Math.round(weather[0].temperature * 9 / 5 + 32) : weather[0].temperature);
+
+    let tempContent;
+
+    if(tempType === "fanhrenheit"){
+       tempContent = (
+        <div className="weather__info--temp">{infoTemp} 
+          <sup className={tempType === "fanhrenheit" ? "temp__active" : null} onClick={() => props.tempChange("fanhrenheit")}>°F | </sup>
+          <sup onClick={() => props.tempChange("celsius")}>°C</sup>
+      </div>
+      )
+    } else {
+      tempContent = (
+        <div className="weather__info--temp">{infoTemp}
+          <sup className={tempType === "celsius" ? "temp__active" : null} onClick={() => props.tempChange("celsius")}>°C | </sup>
+          <sup onClick={() => props.tempChange("fanhrenheit")}>°F</sup>
+      </div>
+      )
+    }
     content = (
       <>
-      <div className="weather__info">
-        <div className="weather_date">{weather[0].date}</div>
-        <div className="weather_type">{weather[0].type}</div>
-        <div className="weather_type">{weather[0].temperature}</div>
-      </div>
-      <div className="weather__days">
-
-        <DaysList days={weather}/> 
-      </div>
+        <div className="weather__info">
+          <div className="weather__info--date">{infoDate}</div>
+          <div className="weather__info--type">{weather[0].type}</div>
+          <div className={`weather__info--avatar ${weather[0].type}`}></div>
+          <div className="weather__info--temp">{tempContent}
+          </div>
+          <div className="weather__info--more">
+            <ul>
+              <li>Precipitation: <span>{weather[0].precipitation + "%"}</span> </li>
+              <li>Humidity: <span>{weather[0].humidity + "%"}</span> </li>
+              <li>Wind: <span>{weather[0].windInfo.speed + " mph " + weather[0].windInfo.direction }</span> </li>
+              <li>Pollen Count: <span>{weather[0].pollenCount}</span> </li>
+            </ul>
+          </div>
+        </div>
+        <div className="weather__days">
+          <DaysList days={weather}  tempType={tempType} date={props.date} daysNames={daysNames}/> 
+        </div>
       </>
     )
-
   }
 
   const cityList = cities.map( city => {
@@ -43,8 +92,7 @@ const Weather = (props) => {
           </ul>
         </div>
       </div> 
-      {content}
-     
+      {isLoaded === false ? <h3>Loadding...</h3> : content}
     </div>
   );
 }
