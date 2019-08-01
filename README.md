@@ -1,8 +1,8 @@
 
 # Weather widget app
 
-This is a weather widget app written in ReactJS. 
-You can check it out live [here]().
+This is a weather widget app written in ReactJS.<br>
+You can check it out live [here](https://matthew-hub.github.io/weather-widget/).
 
 ## Installation
 #### You need to download the:
@@ -12,6 +12,7 @@ You can check it out live [here]().
 #### To start the project:
 
 ```
+open Command Prompt 
 git clone https://github.com/matthew-hub/weather-widget.git
 cd weather-widget
 npm install
